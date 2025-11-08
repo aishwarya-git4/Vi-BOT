@@ -1,0 +1,53 @@
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+INFO:root:Session ID: None, User Query: what is FFCS?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+INFO:root:Session ID: None, User Query: what is ffcs?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+INFO:root:Session ID: None, User Query: what is ffcs?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! huggingface_api_key is not default parameter.
+                    huggingface_api_key was transferred to model_kwargs.
+                    Please make sure that huggingface_api_key is what you intended.
+INFO:root:Session ID: None, User Query: what is FFCS?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: None, User Query: what is ffcs?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: None, User Query: hi, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: None, User Query: what is ffcs?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, AI Response: FFCS stands for Fully Flexible Credit System. It is a teaching and learning approach introduced by VIT (Vellore Institute of Technology) to provide students with complete freedom in tailoring their course and learning environment.
+
+In the FFCS system, students have the flexibility to:
+
+1. Prepare their own timetable with the specific courses they intend to do in a semester.
+2. Choose the timings of classes and the professors they want to learn from.
+3. Pursue their other interests and passions alongside their academic coursework.
+
+The FFCS system aims to accommodate the wants and needs of the entire student community, making learning a more personalized and enjoyable experience.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, User Query: where is homi bhabha gallery?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, AI Response: The Homi Bhabha Gallery of Art is located in the VIT campus, Vellore, Tamil Nadu, India.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, User Query: which room number and building?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, AI Response: I don't have the specific room number and building details for the Homi Bhabha Gallery of Art in the VIT campus. If you need detailed information, I recommend checking with the VIT campus administration or contacting the VIT helpdesk for assistance.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, User Query: when is riviera held?, Model: meta-llama/Meta-Llama-3-8B-Instruct
+WARNING:langchain_huggingface.llms.huggingface_endpoint:WARNING! api_key is not default parameter.
+                    api_key was transferred to model_kwargs.
+                    Please make sure that api_key is what you intended.
+INFO:root:Session ID: dc98fa3b-aee5-4e54-91b6-bb14775b63c3, AI Response: Riviera is an annual cultural festival held at the Vellore Institute of Technology (VIT). However, I do not have the exact dates for the festival. The dates may vary from year to year.
+
+Typically, the VIT website announces the dates for Riviera and other festivals well in advance. I recommend checking the VIT website or contacting the VIT campus administration for the latest information on the festival dates.

@@ -1,0 +1,5 @@
+emilyfast/
+__pycache__/
+*.pyc
+*.log
+.env
