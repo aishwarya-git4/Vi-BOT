@@ -1,5 +1,14 @@
-emilyfast/
+emilyfast/Lib/
+emilyfast/Include/
+emilyfast/Scripts/
+emilyfast/pyvenv.cfg
+
+# Python cache
 __pycache__/
 *.pyc
+
+# logs
 *.log
+
+# secrets
 .env

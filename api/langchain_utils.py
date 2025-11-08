@@ -11,6 +11,9 @@ from chroma_utils import vectorstore
 retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
 
 output_parser = StrOutputParser()
+from dotenv import load_dotenv
+load_dotenv()
+hf_key = os.getenv("HF_TOKEN")
 
 
 
@@ -44,7 +47,7 @@ qa_prompt = ChatPromptTemplate.from_messages([
 def get_rag_chain(model_name="meta-llama/Meta-Llama-3-8B-Instruct"):
     hf_llm = HuggingFaceEndpoint(
     repo_id=model_name,
-    api_key="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",
+    api_key=hf_key,
     task="chat-completion",        # crucial for instruct-style models
     temperature=0.0,
     max_new_tokens=100
