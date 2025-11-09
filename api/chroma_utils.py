@@ -7,7 +7,7 @@ from langchain_core.documents import Document
 import os
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, length_function=len)
-embedding_function=SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+embedding_function = SentenceTransformerEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L3-v2")
 vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embedding_function)
 
 def load_and_split_document(file_path: str) -> List[Document]:
