@@ -1,10 +1,14 @@
-# ===== Stage 1: Builder =====
-FROM python:3.11-slim AS builder
+# ===== Minimal Dockerfile for Railway =====
+FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
 
-# Install minimal build tools
+# Environment settings
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install minimal system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libffi-dev \
@@ -12,31 +16,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only requirements to leverage Docker cache
+# Copy only requirement files
 COPY api/requirements-base.txt ./requirements-base.txt
 COPY api/requirements-ml.txt ./requirements-ml.txt
 
-# Upgrade pip and build wheels for all Python packages except torch
+# Upgrade pip and install all Python dependencies
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip wheel --no-cache-dir -r requirements-base.txt -w /wheels && \
-    pip wheel --no-cache-dir -r requirements-ml.txt -w /wheels
+    # Install CPU-only PyTorch first
+    pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
+    # Install the rest of the dependencies
+    pip install --no-cache-dir -r requirements-base.txt -r requirements-ml.txt
 
-# ===== Stage 2: Final image =====
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Install CPU-only PyTorch (latest compatible)
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
-
-# Copy pre-built wheels from builder and install them
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
-
-# Copy only minimal project files
+# Copy project code
 COPY api /app/api
-COPY api/requirements-base.txt ./requirements-base.txt
-COPY api/requirements-ml.txt ./requirements-ml.txt
 
 # Expose FastAPI port
 EXPOSE 8080
