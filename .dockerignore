@@ -18,4 +18,5 @@ venv/
 *.pt
 *.bin
 *.ckpt
-.app
+app/
+emilyfast/
