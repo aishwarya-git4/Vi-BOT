@@ -18,3 +18,4 @@ venv/
 *.pt
 *.bin
 *.ckpt
+.app

@@ -1,7 +1,4 @@
-emilyfast/Lib/
-emilyfast/Include/
-emilyfast/Scripts/
-emilyfast/pyvenv.cfg
+emilyfast
 
 # Python cache
 __pycache__/
