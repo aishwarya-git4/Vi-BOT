@@ -1,8 +1,4 @@
 # === Core ML libraries ===
-# Install PyTorch CPU wheels from the official index
-torch==2.7.1+cpu
---find-links https://download.pytorch.org/whl/cpu/torch_stable.html
-
 transformers==4.54.1
 sentence-transformers==5.0.0
 onnxruntime==1.20.1
