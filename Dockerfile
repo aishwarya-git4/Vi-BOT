@@ -1,5 +1,5 @@
 # Start from a lightweight but compatible base
-FROM python:3.11-bookworm-slim
+FROM python:3.11-bullseye-slim
 
 # Set working directory
 WORKDIR /app
