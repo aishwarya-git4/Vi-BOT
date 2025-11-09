@@ -31,4 +31,5 @@ COPY . .
 EXPOSE 10000
 
 # Default command to start your app
-CMD ["python", "app.py"]
+
+CMD ["bash", "start.sh"]
