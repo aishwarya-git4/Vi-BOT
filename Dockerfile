@@ -1,35 +1,41 @@
-FROM python:3.11-slim
+# Start from a lightweight but compatible base
+FROM python:3.11-bookworm-slim
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Prevent Python from writing pyc files and buffer logs
+# Environment settings
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Install essential system deps (tiny set to keep image small)
+# Install only minimal system deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+    gcc \
     curl \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only requirement files first (for caching)
+# Copy requirements (for better caching)
 COPY api/requirements-base.txt /app/api/requirements-base.txt
 COPY api/requirements-ml.txt /app/api/requirements-ml.txt
 
-# Install Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r /app/api/requirements-base.txt && \
-    pip install --no-cache-dir -r /app/api/requirements-ml.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html
+    pip install --no-cache-dir -r /app/api/requirements-ml.txt \
+        -f https://download.pytorch.org/whl/cpu/torch_stable.html && \
+    # cleanup unnecessary build tools and caches
+    apt-get purge -y gcc && apt-get autoremove -y && \
+    rm -rf /root/.cache /var/lib/apt/lists/*
 
-# Copy entire project into container
+# Copy project
 COPY . /app
 
-# Change working directory to where main.py lives
-WORKDIR /app/api
+# Move to backend folder
+WORKDIR /app/emily/api
 
-# Expose the FastAPI port
+# Expose FastAPI port
 EXPOSE 8080
 
-# Run the FastAPI app
+# Run backend
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
