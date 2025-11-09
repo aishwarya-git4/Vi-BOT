@@ -5,3 +5,4 @@ langchain
 chromadb                  # Or use chromadb if using Chroma
 sentence-transformers        # For embedding documents and queries
 python-dotenv                # For .env file to securely store API keys
+langchain_huggingface
