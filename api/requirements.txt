@@ -70,7 +70,7 @@ mypy-extensions==1.1.0
 narwhals==2.0.1
 networkx==3.2.1
 # numpy==2.0.2
-numpy==1.26.4
+numpy>=1.26.0,<1.28.0
 oauthlib==3.3.1
 onnxruntime==1.20.1
 openai==1.97.1
