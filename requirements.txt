@@ -1,0 +1,9 @@
+# Streamlit frontend dependencies
+streamlit==1.29.0
+
+# FastAPI backend dependencies needed by your app
+fastapi==0.116.1
+starlette==0.47.2
+requests==2.32.4
+python-dotenv==1.1.1
+docx2txt==0.9
