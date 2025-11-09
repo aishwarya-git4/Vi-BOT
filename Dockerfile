@@ -1,24 +1,33 @@
-# Use a lightweight official Python image
-FROM python:3.12-slim
+FROM python:3.11-slim
 
-# Prevent Python from writing .pyc files and buffer logs
+# Set working directory inside container
+WORKDIR /app
+
+# Prevent Python from writing .pyc files and buffering stdout
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set working directory
-WORKDIR /app
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements from api folder
-COPY api/requirements.txt ./requirements.txt
+# Copy and install base dependencies first (for caching)
+COPY api/requirements-base.txt ./api/requirements-base.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r ./api/requirements-base.txt
 
-# Upgrade pip and install dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Copy and install heavy ML dependencies with pre-built wheels
+COPY api/requirements-ml.txt ./api/requirements-ml.txt
+RUN pip install --no-cache-dir -r ./api/requirements-ml.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html
 
-# Copy all source files from api folder
-COPY api/ .
+# Copy the rest of your code
+COPY . .
 
-# Expose port 8000 (FastAPI default)
-EXPOSE 8000
+# Expose FastAPI port
+EXPOSE 8080
 
-# Start FastAPI app with Uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run FastAPI with uvicorn
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8080"]
