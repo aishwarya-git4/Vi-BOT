@@ -33,7 +33,6 @@ RUN apt-get purge -y gcc git curl && apt-get autoremove -y && \
 COPY api /app/api
 COPY Dockerfile /app/Dockerfile
 COPY .dockerignore /app/.dockerignore
-COPY .gitignore /app/.gitignore
 
 # Expose FastAPI port
 EXPOSE 8080
