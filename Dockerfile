@@ -4,7 +4,7 @@ FROM python:3.11-slim AS builder
 # Set working directory
 WORKDIR /app
 
-# Install minimal build tools for building wheels
+# Install minimal build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libffi-dev \
@@ -26,14 +26,14 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install CPU-only PyTorch directly
-RUN pip install --no-cache-dir torch==2.7.1+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
+# Install CPU-only PyTorch (latest compatible)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# Copy pre-built wheels from builder
+# Copy pre-built wheels from builder and install them
 COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
 
-# Copy only the minimal required files
+# Copy only minimal project files
 COPY api /app/api
 COPY api/requirements-base.txt ./requirements-base.txt
 COPY api/requirements-ml.txt ./requirements-ml.txt
@@ -41,5 +41,5 @@ COPY api/requirements-ml.txt ./requirements-ml.txt
 # Expose FastAPI port
 EXPOSE 8080
 
-# Run the FastAPI app
+# Run FastAPI
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8080"]
