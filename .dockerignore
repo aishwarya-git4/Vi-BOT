@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.venv/
+venv/
+
+# Version control
+.git/
+.gitignore
+
+# Notebooks / logs / temp files
+*.ipynb_checkpoints
+*.log
+logs/
+outputs/
+tmp/
+__temp__/
+
+# Model and dataset folders
+data/
+datasets/
+models/
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.onnx
+*.h5
+*.ckpt
+
+# Caches
+.cache/
+.huggingface/
